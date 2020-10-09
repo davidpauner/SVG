@@ -14,13 +14,22 @@
 
 
     <script>
+        let area;
+        let areaColor;
+        let kommuner;
+        let selected;
+
+
         async function loadMap() {
 
-            const mapdata = await fetch("kommuner2.svg");
+            const mapdata = await fetch("kommuner.svg");
             const mapsvg = await mapdata.text();
 
+            const jsondata = await fetch("byer.json");
+            const kommuner = await jsondata.json();
+
             console.log({
-                mapdata
+                kommuner
             });
 
             document.querySelector("#map").innerHTML = mapsvg;
@@ -29,5 +38,31 @@
         }
 
         loadMap();
+
+
+        document.querySelector("#map").addEventListener("mouseover", visValgt);
+        document.querySelector("#map").addEventListener("mouseout", fjernValgt);
+
+        function visValgt() {
+
+            area = event.target;
+            selected = area.parentElement.id;
+            areaColor = area.getAttribute("fill");
+
+            area.setAttribute("fill", "#ca1")
+
+            console.log(selected);
+
+
+        }
+
+        function fjernValgt() {
+
+
+            area.setAttribute("fill", areaColor);
+
+
+
+        }
     </script>
 </body></html>
