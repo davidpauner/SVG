@@ -13,6 +13,8 @@
 
         <h2></h2>
         <p></p>
+        <p id="rank"></p>
+        <p id="hold"></p>
 
 
     </article>
@@ -65,6 +67,8 @@
                 if (kommune.by == selected) {
                     document.querySelector("article h2").textContent = kommune.by;
                     document.querySelector("article p").textContent = kommune.beskatningsgrundlag;
+                    document.querySelector("#rank").textContent = kommune.rank;
+                    document.querySelector("#hold").textContent = kommune.hold;
                 }
 
 
