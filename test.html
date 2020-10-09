@@ -9,6 +9,14 @@
 </head>
 
 <body>
+    <article>
+
+        <h2></h2>
+        <p></p>
+
+
+    </article>
+
     <div id="map"></div>
 
 
@@ -26,7 +34,7 @@
             const mapsvg = await mapdata.text();
 
             const jsondata = await fetch("byer.json");
-            const kommuner = await jsondata.json();
+            kommuner = await jsondata.json();
 
             console.log({
                 kommuner
@@ -52,6 +60,16 @@
             area.setAttribute("fill", "#ca1")
 
             console.log(selected);
+
+            kommuner.forEach(kommune => {
+                if (kommune.by == selected) {
+                    document.querySelector("article h2").textContent = kommune.by;
+                    document.querySelector("article p").textContent = kommune.beskatningsgrundlag;
+                }
+
+
+
+            })
 
 
         }
